@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thêm mới nhân viên</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container pt-3">
+		<div class="card" style="width: 50%; margin: auto;">
+			<div class="card-header">
+				<h3>Thêm mới nhân viên tòa nhà</h3>
+			</div>
+			<div class="card-body">
+				<form th:action="@{/building_staff/insert}" th:object="${b_staff}"
+					method="post">
+					<div class="form-group">
+						<label for="name">Tên</label> <input class="form-control"
+							type="text" id="name" th:field="*{name}" required>
+					</div>
+					<div class="form-group">
+						<label for="dob">Ngày sinh</label> <input
+							class="form-control" type="date" id="dob" th:field="*{dateOfBirth}"
+							required>
+					</div>
+					<div class="form-group">
+						<label for="address">Địa chỉ</label> <input class="form-control"
+							type="text" id="address" th:field="*{address}"> 
+					</div>		
+					<div class="form-group">
+						<label for="phone">SĐT</label> <input class="form-control"
+							type="text" id="phone" th:field="*{phone}"> 
+					</div>		
+					<div class="form-group">
+						<label for="ranks">Bậc</label> <input class="form-control"
+							type="text" id="ranks" th:field="*{ranks}"> 
+					</div>		
+					<div class="form-group">
+						<label for="position">Vị trí</label> <input class="form-control"
+							type="text" id="position" th:field="*{position}"> 
+					</div>					
+					<button type="submit" class="btn btn-success">Xác nhận</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

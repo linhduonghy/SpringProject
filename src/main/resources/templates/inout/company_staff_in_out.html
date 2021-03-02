@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Thông tin vào ra của nhân viên công ty</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<div class="container pt-3">
+
+
+
+		<div class="row mt-4">
+
+			<div class="col">
+				<h2 class="mb-4">Thêm thông tin vào/ra</h2> 
+				<a th:href="@{company_staff_in_out/report}" class="btn btn-success float-right">Thống kê Vào/Ra</a>
+				<form th:action="@{company_staff_in_out/insert}" method="post">
+					<div class="form-group">
+						<label for="staffs">Chọn nhân viên:</label> <select name="staff"
+							id="staffs">
+							<div th:each="staff : ${staffs}">
+								<option th:value="${staff.id}"
+									th:text="${staff.id} + ' - ' + ${staff.name}"></option>
+							</div>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="inOut">Vào/Ra:</label>
+						<select name="inOut" id="inOut">
+							<option value="Vào">Vào</option>
+							<option value="Ra">Ra</option>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label for="address">Địa điểm:</label>
+						<select name="addressInOut" id="address">
+							<option value="Tầng 1">Tầng 1</option>
+							<option value="Hầm B1">Hầm B1</option>
+							<option value="Hầm B2">Hầm B2</option>
+						</select>
+					</div>
+					<button class="btn btn-success">Thêm thông tin</button>
+				</form>
+			</div>
+		</div>
+
+		<h2 class="mt-5">Thông tin các lần vào ra của nhân viên</h2>
+		<table class="table table-hover mt-4">
+			<thead>
+				<th>Nhân viên</th>
+				<th>Công ty</th>
+				<th>Ra/Vào</th>
+				<th>Thời gian</th>
+				<th>Địa điểm</th>
+			</thead>
+			<tbody>
+				<tr th:each="inout : ${inouts}">
+					<td th:text="${inout.companyStaff.name}"></td>
+					<td th:text="${inout.companyStaff.company.name}"></td>
+					<td th:text="${inout.inOut}"></td>
+					<td th:text="${inout.time}"></td>
+					<td th:text="${inout.addressInOut}"></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Chỉnh sửa thông tin công ty</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container pt-3">
+		<div class="card" style="width: 50%; margin: auto;">
+			<div class="card-header">
+				<h3>Thêm mới Công ty</h3>
+			</div>
+			<div class="card-body">
+				<form th:action="@{/company/insert}" th:object="${company}"
+					method="post">
+					<input type="hidden" th:field="*{id}">
+					<!-- div class="form-group">
+						<label for="name">Mã:</label> <input class="form-control"
+							type="text" th:value="${company.id}"disabled="disabled">
+							
+					</div> -->
+					<div class="form-group">
+						<label for="name">Tên:</label> <input class="form-control"
+							type="text" id="name" th:field="*{name}" required>
+					</div>
+					<div class="form-group">
+						<label for="taxId">Mã số thuế:</label> <input class="form-control"
+							type="text" id="taxId" th:field="*{taxId}" required>
+					</div>
+					<div class="form-group">
+						<label for="charterCapital">Vốn điều lệ:</label> <input
+							class="form-control" type="text" id="charterCapital"
+							th:field="*{charterCapital}">
+					</div>
+					<div class="form-group">
+						<label for="operationField">Lĩnh vực hoạt động:</label> <input
+							class="form-control" type="text" id="operationField"
+							th:field="*{operationField}">
+					</div>
+					<div class="form-group">
+						<label for="address">Địa chỉ</label> <input class="form-control"
+							type="text" id="address" th:field="*{addressInBuilding}">
+					</div>
+					<div class="form-group">
+						<label for="phone">SĐT</label> <input class="form-control"
+							type="text" id="phone" th:field="*{phone}">
+					</div>
+					<div class="form-group">
+						<label for="spaceArea">Diện tích mặt bằng</label> <input
+							class="form-control" type="text" id="spaceArea"
+							th:field="*{spaceArea}">
+					</div>
+
+					<!-- <div class="form-group">
+						<label>Chọn dịch vụ</label>
+						<div th:each="service : ${services}">
+							<input type="checkbox"
+								name="${service.id}"  th:value="${service.id}">
+							<label for="service" th:text="${service.name}"></label><br>
+						</div>
+
+					</div> -->
+					<button type="submit" class="btn btn-success">Xác nhận</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thêm dịch vụ công ty</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container pt-3">
+
+		<div class="row">
+			<div class="col-6">
+				<h4 style="margin-bottom: 20px;">Thông tin công ty</h4>
+				<table class="table table-hover">
+					<tr>
+						<th>Tên công ty</th>
+						<td th:text="${company.name}"></td>
+					</tr>
+					<tr>
+						<th>Lĩnh vực</th>
+						<td th:text="${company.operationField}"></td>
+					</tr>
+					<tr>
+						<th>Địa chỉ</th>
+						<td th:text="${company.addressInBuilding}"></td>
+					</tr>
+					<tr>
+						<th>SĐT</th>
+						<td th:text="${company.phone}"></td>
+					</tr>
+				</table>
+
+			</div>
+			<div class="col-1"></div>
+			<div class="col-5" >
+				<h4 style="margin-bottom: 20px;">Các dịch vụ đang sử dụng</h4>
+				<table class="table table-hover">
+					<thead>
+						<th>Dịch vụ</th>
+						<th>Ngày đăng ký</th>
+					</thead>
+					<tbody>
+						<tr th:each="cs : ${company.services}">
+							<td th:text="${cs.service.name}"></td>
+							<td th:text="${cs.createdOn}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+		<div class="row" th:if="${not #lists.isEmpty(services)}">
+			<div class="col">
+				<h4 style="margin-bottom: 20px;">Thêm dịch vụ</h4>
+				<form th:action="@{/company/insert_service}" method="post">
+					<input name="company_id" type="hidden" th:value="${company.id}">
+					<div class="checkbox mb-3" th:each="service : ${services}">
+						<input name="services" th:id="${service.id}" type="checkbox"
+							th:value="${service.id}"> <label th:for="${service.id}"
+							th:text="${service.name}"></label>
+					</div>
+					<button type="submit" class="btn btn-success"
+						style="margin-top: 2vh;">Submit</button>
+				</form>
+			</div>
+
+		</div>
+
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Company</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<div class="container pt-3">
+
+		<div class="row">
+			<div class="col-4">
+				<h2>Danh sách công ty</h2>
+			</div>
+			<div class="col-3 float-right">
+				<a th:href="@{/company/insert}"><button class="btn btn-success">Thêm
+						công ty</button></a>
+			</div>
+			<div class="col-5">
+				<form th:action="@{/company/search}" method="post">
+					<input type="text" name="name" placeholder="Tìm kiếm theo tên" 
+						class="form-control" style="display: inline-block; width: 50%;" >
+					<button type="submit" class="btn btn-success" style="margin-top: -6px;">Tìm kiếm</button>
+				</form>
+			</div>
+		</div>
+
+		<table class="table">
+			<thead>
+				<th>#</th>
+				<th>Công ty</th>
+				<th>Mã số thuế</th>
+				<th>Vốn điều lệ</th>
+				<th>Lĩnh vực</th>
+				<th>Số nhân viên</th>
+				<th>Địa chỉ</th>
+				<th>SĐT</th>
+				<th>Diện tích</th>
+				<th>#</th>
+			</thead>
+			<tbody>
+				<tr th:each="company : ${companies}">
+					<td th:text="${company.id}"></td>
+					<td th:text="${company.name}"></td>
+					<td th:text="${company.taxId}"></td>
+					<td th:text="${company.charterCapital}"></td>
+					<td th:text="${company.operationField}"></td>
+					<td th:text="${company.numberOfStaff}"></td>
+					<td th:text="${company.addressInBuilding}"></td>
+					<td th:text="${company.phone}"></td>
+					<td th:text="${company.spaceArea}"></td>
+					
+					<td>
+						<a th:href="@{/company/edit/{id}(id=${company.id})}"><i class="fa fa-edit" style="font-size: 20px;"></i></a>
+						<a th:href="@{/company/delete/{id}(id=${company.id})}" onclick="return confirm('Bạn có chắc chắn xóa công ty này?');" style="margin-left:5px;"><i class="fa fa-times" style="font-size: 20px;"></i></a>
+					</td>
+					<td><a class="btn btn-success" th:href="@{/company/{company_id}(company_id=${company.id})}">Chi tiết</a></td>					
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

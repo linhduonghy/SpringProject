@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Nhân viên tòa nhà</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<div class="container pt-3">
+
+		<div class="row pb-3">
+			<div class="col-4">
+				<h2>Nhân viên tòa nhà</h2>
+			</div>
+			<div class="col-3 float-right">
+				<a th:href="@{/building_staff/insert}"><button class="btn btn-success">Thêm
+						nhân viên</button></a>
+			</div>
+			<div class="col-5">
+				<form th:action="@{/building_staff/search}" method="post">
+					<input type="text" name="name" placeholder="Tìm kiếm theo tên" 
+						class="form-control" style="display: inline-block; width: 50%;" >
+					<button type="submit" class="btn btn-success" style="margin-top: -6px;">Tìm kiếm</button>
+				</form>
+			</div>
+		</div>
+
+		<table class="table table-hover">
+			<thead>
+				<th>#</th>
+				<th>Tên nhân viên</th>
+				<th>Ngày sinh</th>
+				<th>Địa chỉ</th>
+				<th>SĐT</th>
+				<th>Bậc</th>
+				<th>Vị trí</th>		
+				<th></th>		
+	
+			</thead>
+			<tbody>
+				<tr th:each="b_staff : ${b_staffs}">
+					<td th:text="${b_staff.id}"></td>
+					<td th:text="${b_staff.name}"></td>
+					<td th:text="${b_staff.dateOfBirth}"></td>
+					<td th:text="${b_staff.address}"></td>
+					<td th:text="${b_staff.phone}"></td>
+					<td th:text="${b_staff.ranks}"></td>
+					<td th:text="${b_staff.position}"></td>
+					<td>
+						<a th:href="@{/building_staff/edit/{id}(id=${b_staff.id})}"><i class="fa fa-edit" style="font-size: 20px;"></i></a>
+						<a th:href="@{/building_staff/delete/{id}(id=${b_staff.id})}" onclick="return confirm('Bạn có chắc chắn xóa nhân viên này?');" style="margin-left:5px;"><i class="fa fa-times" style="font-size: 20px;"></i></a>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

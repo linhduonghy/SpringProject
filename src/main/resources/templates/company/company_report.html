@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Company</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<div class="container pt-3">
+
+		<div class="row mb-3">
+			<div class="col-4">
+				<h2>Thông tin công ty</h2>
+			</div>
+		</div>
+
+		<table class="table">
+			<thead>
+				<th>#</th>
+				<th>Công ty</th>
+				<th>Mã số thuế</th>
+				<th>Vốn điều lệ</th>
+				<th>Lĩnh vực</th>
+				<th>Số nhân viên</th>
+				<th>Địa chỉ</th>
+				<th>SĐT</th>
+				<th>Diện tích</th>
+				<th>Tổng tiền</th>
+			</thead>
+			<tbody>
+				<tr th:each="company : ${companies}">
+					<td th:text="${company.id}"></td>
+					<td th:text="${company.name}"></td>
+					<td th:text="${company.taxId}"></td>
+					<td th:text="${company.charterCapital}"></td>
+					<td th:text="${company.operationField}"></td>
+					<td th:text="${company.numberOfStaff}"></td>
+					<td th:text="${company.addressInBuilding}"></td>
+					<td th:text="${company.phone}"></td>
+					<td th:text="${company.spaceArea}"></td>
+					<td th:text="${company.totalCost}"></td>
+					
+					<td><a class="btn btn-success" th:href="@{/company/{company_id}(company_id=${company.id})}">Chi tiết</a></td>					
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
